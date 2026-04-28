@@ -1,18 +1,20 @@
 {
   "events": [
     {
-      "title": "银行短期活期Plus",
-      "text": "银行推出短期理财，锁定 2 回合，享受 5% 的复利回报。",
+      "index": 1,
+      "title": "存钱罐储蓄",
+      "text": "把暂时不用的钱存进房间里的存钱罐，享受最基础的单利回报。",
       "color_type": "green",
       "type": "save",
       "options": [
-        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.05, "type": "compound", "lock": 2 } },
-        { "text": "暂不考虑", "impact": { "money": 0 } }
+        { "text": "存入 200", "save_data": { "amount": 200, "rate": 0.02, "type": "simple", "lock": 2 } },
+        { "text": "不存了", "impact": { "money": 0 } }
       ]
     },
     {
+      "index": 2,
       "title": "购买全碳纤维公路车",
-      "text": "这台车能让你掷骰子步数翻倍。价格昂贵，但能显著提升跑图效率。",
+      "text": "帅气的赛车能让你跑图效率翻倍。注意分期产生的负债。",
       "color_type": "purple",
       "type": "spend",
       "options": [
@@ -26,527 +28,589 @@
           "installment": { "down_payment": -1000, "per_term": 1100, "terms": 5 },
           "asset_data": { "name": "公路车", "initial_value": 6000, "change_rate": -0.05, "perk": { "type": "move", "value": 2, "desc": "步数翻倍" } }
         },
-        { "text": "拒绝消费", "impact": { "money": 0 } }
+        { "text": "拒绝", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "初级 Python 开发课",
-      "text": "学习编程接私单，永久提升每回合的工资收入。",
-      "color_type": "green",
-      "type": "skill",
-      "options": [
-        {
-          "text": "支付学费 (800)",
-          "impact": { "money": -800 },
-          "perk": { "type": "salary", "value": 150, "desc": "工资额外增加 150" }
-        },
-        { "text": "不参与", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "投资基金：半导体产业",
-      "text": "高科技产业波动大。投入 2000，成功可获利 1500，失败则亏损全部本金。",
+      "index": 3,
+      "title": "投资基金：校园教育基金",
+      "text": "为未来学习投资。成功可获利，失败则亏损投入的本金。",
       "color_type": "green",
       "type": "invest",
       "options": [
-        { 
-          "text": "投入 2000", 
-          "probability": 0.45, 
-          "impact": { "money": 1500 }, 
-          "fail_impact": { "money": -2000 } 
-        },
-        { "text": "观望", "impact": { "money": 0 } }
+        { "text": "投入 1000", "probability": 0.75, "impact": { "money": 800 }, "fail_impact": { "money": -1000 } },
+        { "text": "暂不参加", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买智能降噪耳机",
-      "text": "提升工作专注度，使答题奖励获得 1.2 倍加成。",
+      "index": 4,
+      "title": "购买电子锁存钱罐",
+      "text": "理智消费。这种存钱罐更安全，能防御“弟弟偷拿钱”的意外。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         {
-          "text": "全款支付 (1800)",
-          "impact": { "money": -1800 },
-          "asset_data": { "name": "降噪耳机", "initial_value": 1800, "change_rate": -0.12, "perk": { "type": "boost", "value": 1.2, "desc": "答题奖励 1.2 倍" } }
+          "text": "买一个 (300)",
+          "impact": { "money": -300 },
+          "asset_data": { "name": "电子锁", "initial_value": 300, "change_rate": -0.1, "perk": { "type": "shield", "value": "accident", "desc": "防御失窃意外" } }
         },
-        { "text": "拒绝购买", "impact": { "money": 0 } }
+        { "text": "不需要", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "六年期长期教育债",
-      "text": "超长期稳健投资，锁定 6 回合，享受 15% 的高额单利。",
-      "color_type": "green",
-      "type": "save",
+      "index": 5,
+      "title": "【意外】存钱罐碎了",
+      "text": "不小心打破了存钱罐，零钱掉了一地，损失了一些钱。",
+      "color_type": "red",
+      "type": "accident",
       "options": [
-        { "text": "存入 5000", "save_data": { "amount": 5000, "rate": 0.15, "type": "simple", "lock": 6 } },
-        { "text": "放弃机会", "impact": { "money": 0 } }
+        { "text": "呜呜呜", "impact": { "money": -150 }, "description": "如果你有【电子锁存钱罐】，它非常结实，损失为 0。" }
       ]
     },
     {
-      "title": "投资二手摄影器材",
-      "text": "投入 3000。预计获利 1800，若贬值无法售出则亏损 1200 元。",
-      "color_type": "green",
-      "type": "invest",
-      "options": [
-        { 
-          "text": "投入 3000", 
-          "probability": 0.7, 
-          "impact": { "money": 1800 }, 
-          "fail_impact": { "money": -1200 } 
-        },
-        { "text": "不参与", "impact": { "money": 0 } }
-      ]
-    },
-    {
+      "index": 6,
       "title": "购买旗舰绘图板",
-      "text": "利用工具开启副业，每回合领取的工资增加 120。",
+      "text": "开启副业领工资。全款或分期你都能获得它。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         {
           "text": "全款 (3200)",
           "impact": { "money": -3200 },
-          "asset_data": { "name": "绘图板", "initial_value": 3200, "change_rate": -0.08, "perk": { "type": "salary", "value": 120, "desc": "副业工资增加 120" } }
+          "asset_data": { "name": "绘图板", "initial_value": 3200, "change_rate": -0.08, "perk": { "type": "salary", "value": 120, "desc": "每回合工资增加 120" } }
         },
         {
           "text": "分期 (首付800, 每期500, 6期)",
           "installment": { "down_payment": -800, "per_term": 500, "terms": 6 },
-          "asset_data": { "name": "绘图板", "initial_value": 3200, "change_rate": -0.08, "perk": { "type": "salary", "value": 120, "desc": "副业工资增加 120" } }
+          "asset_data": { "name": "绘图板", "initial_value": 3200, "change_rate": -0.08, "perk": { "type": "salary", "value": 120, "desc": "每回合工资增加 120" } }
         },
-        { "text": "不购买", "impact": { "money": 0 } }
+        { "text": "拒绝", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "养老预备金储蓄",
-      "text": "锁定 5 回合，复利增长 8%。提前规划未来。",
+      "index": 7,
+      "title": "理财讲座：什么是利滚利",
+      "text": "学习复利知识。掌握后，你的答题奖励将永久提升。",
+      "color_type": "green",
+      "type": "skill",
+      "options": [
+        { "text": "交费 (500)", "impact": { "money": -500 }, "perk": { "type": "boost", "value": 1.5, "desc": "答题奖励 1.5 倍" } },
+        { "text": "不听课", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 8,
+      "title": "【意外】电信诈骗",
+      "text": "有人在游戏里骗你中奖了，如果你没买保险，你的余额危险了！",
+      "color_type": "red",
+      "type": "accident",
+      "options": [
+        { "text": "大意了", "impact": { "money": -1000 }, "description": "如果你有【网络安全险】，损失为 0。" }
+      ]
+    },
+    {
+      "index": 9,
+      "title": "购买网络安全险",
+      "text": "抵御虚假中奖信息和非法转账风险。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        { "text": "购买 (150)", "impact": { "money": -150 }, "perk": { "type": "shield", "value": "accident", "desc": "抵御一次诈骗" } },
+        { "text": "不买", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 10,
+      "title": "投资：校园小卖部代理",
+      "text": "投入 2000 元，如果文具卖得好获利 1500，卖不掉亏损 1200。",
+      "color_type": "green",
+      "type": "invest",
+      "options": [
+        { "text": "投资 2000", "probability": 0.6, "impact": { "money": 1500 }, "fail_impact": { "money": -1200 } },
+        { "text": "放弃", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 11,
+      "title": "购买新款自动铅笔",
+      "text": "只是好看的文具，并没有实际功能加成。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        { "text": "购买 (100)", "impact": { "money": -100 }, "asset_data": { "name": "自动笔", "initial_value": 100, "change_rate": -0.2, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } } },
+        { "text": "不买", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 12,
+      "title": "复利定存储蓄",
+      "text": "本金加利息一起生利息！锁定 3 回合，8% 复利。",
       "color_type": "green",
       "type": "save",
       "options": [
-        { "text": "存入 2000", "save_data": { "amount": 2000, "rate": 0.08, "type": "compound", "lock": 5 } },
-        { "text": "暂不储蓄", "impact": { "money": 0 } }
+        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.08, "type": "compound", "lock": 3 } },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买二手机电驴",
-      "text": "实用的交通工具。让你的移动步数增加 50%。",
+      "index": 13,
+      "title": "购买高级护脊书包",
+      "text": "背着更轻松，让你每回合掷骰子步数增加 20%。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         {
-          "text": "全款支付 (1200)",
-          "impact": { "money": -1200 },
-          "asset_data": { "name": "电驴", "initial_value": 1200, "change_rate": -0.2, "perk": { "type": "move", "value": 1.5, "desc": "步数增加 50%" } }
+          "text": "全款支付 (800)",
+          "impact": { "money": -800 },
+          "asset_data": { "name": "护脊书包", "initial_value": 800, "change_rate": -0.1, "perk": { "type": "move", "value": 1.2, "desc": "步数增加 20%" } }
         },
-        { "text": "拒绝消费", "impact": { "money": 0 } }
+        { "text": "不买", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "校园创业：自助打印机",
-      "text": "投入 4000 元。成功可获利 2500，失败则亏损 2000 元成本。",
+      "index": 14,
+      "title": "投资：集卡册转手",
+      "text": "投入 500 元买卡。成功卖给土豪获利 600，失败亏损 400。",
       "color_type": "green",
       "type": "invest",
       "options": [
-        { 
-          "text": "投入 4000", 
-          "probability": 0.55, 
-          "impact": { "money": 2500 }, 
-          "fail_impact": { "money": -2000 } 
-        },
-        { "text": "不参与", "impact": { "money": 0 } }
+        { "text": "投资 500", "probability": 0.4, "impact": { "money": 600 }, "fail_impact": { "money": -400 } },
+        { "text": "观望", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "领导力高级研修班",
-      "text": "高昂学费换取职场跳板，大幅增加每回合工资收入。",
+      "index": 15,
+      "title": "心理素质：如何面对负债压力",
+      "text": "学习后能让你即便在欠钱时也保持冷静，免除一次意外损失。",
       "color_type": "green",
       "type": "skill",
       "options": [
-        {
-          "text": "支付学费 (5000)",
-          "impact": { "money": -5000 },
-          "perk": { "type": "salary", "value": 600, "desc": "工资大幅加 600" }
-        },
-        { "text": "不参与", "impact": { "money": 0 } }
+        { "text": "交费 (400)", "impact": { "money": -400 }, "perk": { "type": "shield", "value": "accident", "desc": "免疫压力意外" } },
+        { "text": "不学", "impact": { "money": 0 } }
       ]
     },
     {
+      "index": 16,
+      "title": "【意外】负债导致的焦虑",
+      "text": "你因为欠钱太多压力太大，不得不花钱去放松一下。",
+      "color_type": "red",
+      "type": "accident",
+      "options": [
+        { "text": "花钱买零食", "impact": { "money": -300 }, "description": "如果你有【心理素质课】，你很冷静，损失为 0。" }
+      ]
+    },
+    {
+      "index": 17,
       "title": "购买旗舰智能手机",
-      "text": "新款手机上市。满足日常与社交需求，无特殊功能加成。",
+      "text": "高端手机，无属性加成。可全款或分期。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         {
           "text": "全款 (5200)",
           "impact": { "money": -5200 },
-          "asset_data": { "name": "旗舰手机", "initial_value": 5200, "change_rate": -0.15, "perk": { "type": "none", "value": 0, "desc": "纯消费品，无功能加成" } }
+          "asset_data": { "name": "手机", "initial_value": 5200, "change_rate": -0.15, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } }
         },
         {
           "text": "分期 (首付1200, 每期500, 10期)",
           "installment": { "down_payment": -1200, "per_term": 500, "terms": 10 },
-          "asset_data": { "name": "旗舰手机", "initial_value": 5200, "change_rate": -0.15, "perk": { "type": "none", "value": 0, "desc": "纯消费品，无功能加成" } }
-        },
-        { "text": "旧的还能用", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "三回合稳健定存",
-      "text": "中规中矩的银行产品，年化单利 6%，锁定 3 回合。",
-      "color_type": "green",
-      "type": "save",
-      "options": [
-        { "text": "存入 1500", "save_data": { "amount": 1500, "rate": 0.06, "type": "simple", "lock": 3 } },
-        { "text": "拒绝", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "购买高级厨具套装",
-      "text": "自己做饭省下外卖费，每回合结余增加 80。",
-      "color_type": "purple",
-      "type": "spend",
-      "options": [
-        {
-          "text": "全款购买 (1500)",
-          "impact": { "money": -1500 },
-          "asset_data": { "name": "高级厨具", "initial_value": 1500, "change_rate": -0.05, "perk": { "type": "salary", "value": 80, "desc": "结余增加 80" } }
+          "asset_data": { "name": "手机", "initial_value": 5200, "change_rate": -0.15, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } }
         },
         { "text": "不买", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "区块链技术交流会",
-      "text": "获取内幕资讯，答题及奖励倍增 1.4 倍。",
+      "index": 18,
+      "title": "投资：租借漫画书",
+      "text": "投入 300 买漫画租给同学。成功获利 200，失败亏损全部成本。",
       "color_type": "green",
-      "type": "skill",
+      "type": "invest",
       "options": [
-        {
-          "text": "支付门票 (500)",
-          "impact": { "money": -500 },
-          "perk": { "type": "boost", "value": 1.4, "desc": "奖励倍增 1.4 倍" }
-        },
-        { "text": "不参加", "impact": { "money": 0 } }
+        { "text": "投入 300", "probability": 0.8, "impact": { "money": 200 }, "fail_impact": { "money": -300 } },
+        { "text": "跳过", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买限量版实体唱片",
-      "text": "具备升值潜力的艺术品，保值率极高，无功能属性。",
-      "color_type": "purple",
-      "type": "spend",
-      "options": [
-        {
-          "text": "购买 (1200)",
-          "impact": { "money": -1200 },
-          "asset_data": { "name": "限量唱片", "initial_value": 1200, "change_rate": 0.05, "perk": { "type": "none", "value": 0, "desc": "纯消费品，无功能加成" } }
-        },
-        { "text": "拒绝消费", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "双回合超短期定存",
-      "text": "针对短期资金闲置，单利 4%，仅锁定 2 回合。",
+      "index": 19,
+      "title": "单利定期存款",
+      "text": "银行根据最初存的钱算利息。锁定 2 回合，4% 单利。",
       "color_type": "green",
       "type": "save",
       "options": [
-        { "text": "存入 800", "save_data": { "amount": 800, "rate": 0.04, "type": "simple", "lock": 2 } },
-        { "text": "不参与", "impact": { "money": 0 } }
+        { "text": "存入 500", "save_data": { "amount": 500, "rate": 0.04, "type": "simple", "lock": 2 } },
+        { "text": "不存", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买网络安全险",
-      "text": "防御未知的金融欺诈意外损失。",
+      "index": 20,
+      "title": "购买高级西装",
+      "text": "纯消费品，提高个人形象，无属性加成。",
       "color_type": "purple",
       "type": "spend",
       "options": [
-        {
-          "text": "购买 (200)",
-          "impact": { "money": -200 },
-          "perk": { "type": "shield", "value": "accident", "desc": "抵御一次意外扣款" }
-        },
+        { "text": "购买 (2500)", "impact": { "money": -2500 }, "asset_data": { "name": "西装", "initial_value": 2500, "change_rate": -0.05, "perk": { "type": "none", "value": 0, "desc": "无功能加成" } } },
         { "text": "拒绝", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "股市“抄底”行动",
-      "text": "投入 1500。成功可获利 2500，失败则亏损全部本金。",
+      "index": 21,
+      "title": "投资：校门口的扭蛋机",
+      "text": "投入 400 尝试抽隐藏款卖钱。成功获利 1000，失败亏损全部。",
       "color_type": "green",
       "type": "invest",
       "options": [
-        { 
-          "text": "投入 1500", 
-          "probability": 0.35, 
-          "impact": { "money": 2500 }, 
-          "fail_impact": { "money": -1500 } 
+        { "text": "抽扭蛋 (400)", "probability": 0.2, "impact": { "money": 1000 }, "fail_impact": { "money": -400 } },
+        { "text": "忍住", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 22,
+      "title": "购买智能手表",
+      "text": "记录步数，增加掷骰子点数 10%。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        {
+          "text": "买 (1500)",
+          "impact": { "money": -1500 },
+          "asset_data": { "name": "手表", "initial_value": 1500, "change_rate": -0.2, "perk": { "type": "move", "value": 1.1, "desc": "步数增加 10%" } }
         },
+        { "text": "不买", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 23,
+      "title": "课外特长课：口才班",
+      "text": "学会沟通，增加每回合零用钱收入（加薪）。",
+      "color_type": "green",
+      "type": "skill",
+      "options": [
+        { "text": "交费 (800)", "impact": { "money": -800 }, "perk": { "type": "salary", "value": 100, "desc": "工资增加 100" } },
+        { "text": "不学", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 24,
+      "title": "长期国债教育金",
+      "text": "极其稳健。锁定 5 回合，单利 6%。",
+      "color_type": "green",
+      "type": "save",
+      "options": [
+        { "text": "存入 2000", "save_data": { "amount": 2000, "rate": 0.06, "type": "simple", "lock": 5 } },
+        { "text": "拒绝", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 25,
+      "title": "【意外】丢了昂贵的笔",
+      "text": "你不小心弄丢了同学借给你的笔，必须赔钱。",
+      "color_type": "red",
+      "type": "accident",
+      "options": [
+        { "text": "赔钱", "impact": { "money": -400 }, "description": "这是典型的应急需求，没储蓄就得借钱。" }
+      ]
+    },
+    {
+      "index": 26,
+      "title": "购买次世代游戏机",
+      "text": "纯消费品。折旧极快，全款或分期皆可。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        {
+          "text": "全款 (3800)",
+          "impact": { "money": -3800 },
+          "asset_data": { "name": "游戏机", "initial_value": 3800, "change_rate": -0.2, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } }
+        },
+        {
+          "text": "分期 (首付800, 每期350, 10期)",
+          "installment": { "down_payment": -800, "per_term": 350, "terms": 10 },
+          "asset_data": { "name": "游戏机", "initial_value": 3800, "change_rate": -0.2, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } }
+        },
+        { "text": "不买", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 27,
+      "title": "投资：科学实验包",
+      "text": "做实验卖产品。投入 600。成功获利 400，失败亏损 300。",
+      "color_type": "green",
+      "type": "invest",
+      "options": [
+        { "text": "投入 600", "probability": 0.65, "impact": { "money": 400 }, "fail_impact": { "money": -300 } },
+        { "text": "拒绝", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 28,
+      "title": "购买护眼学习灯",
+      "text": "保护视力，提高学习专注度，答题奖励 1.2 倍。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        { "text": "全款 (400)", "impact": { "money": -400 }, "asset_data": { "name": "学习灯", "initial_value": 400, "change_rate": -0.1, "perk": { "type": "boost", "value": 1.2, "desc": "奖励提升 1.2 倍" } } },
+        { "text": "不买", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 29,
+      "title": "提前还清部分分期",
+      "text": "理智行为。减少负债带来的未来利息压力。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        { "text": "还款 1000", "impact": { "money": -1000 }, "perk": { "type": "shield", "value": "accident", "desc": "省下未来利息" } },
+        { "text": "以后再说", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 30,
+      "title": "投资：校园摄影接单",
+      "text": "帮同学拍照。投入 1000 买胶卷。成功获利 1200，失败亏损 800。",
+      "color_type": "green",
+      "type": "invest",
+      "options": [
+        { "text": "投入 1000", "probability": 0.5, "impact": { "money": 1200 }, "fail_impact": { "money": -800 } },
         { "text": "观望", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买次世代游戏主机",
-      "text": "纯粹的减压消费。折旧极快，无实际功能加成。",
+      "index": 31,
+      "title": "购买电子词典",
+      "text": "工具书，提高答题奖励倍数。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        { "text": "购买 (1200)", "impact": { "money": -1200 }, "asset_data": { "name": "词典", "initial_value": 1200, "change_rate": -0.15, "perk": { "type": "boost", "value": 1.3, "desc": "奖励增加 1.3 倍" } } },
+        { "text": "不买", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 32,
+      "title": "短期稳健余额宝",
+      "text": "低门槛理财。锁定 2 回合，复利 3%。",
+      "color_type": "green",
+      "type": "save",
+      "options": [
+        { "text": "存入 300", "save_data": { "amount": 300, "rate": 0.03, "type": "compound", "lock": 2 } },
+        { "text": "不存", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 33,
+      "title": "【意外】压岁钱被没收",
+      "text": "父母说要帮你存着，结果钱不见了！",
+      "color_type": "red",
+      "type": "accident",
+      "options": [
+        { "text": "难受", "impact": { "money": -500 }, "description": "平时要学会自己理财，合理分配账户。" }
+      ]
+    },
+    {
+      "index": 34,
+      "title": "投资：校园艺术展摊位",
+      "text": "投入 1500。成功卖出作品获利 3000，失败亏损全部投入。",
+      "color_type": "green",
+      "type": "invest",
+      "options": [
+        { "text": "交费 1500", "probability": 0.45, "impact": { "money": 3000 }, "fail_impact": { "money": -1500 } },
+        { "text": "放弃", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 35,
+      "title": "购买降噪耳机",
+      "text": "屏蔽杂音，提高答题奖励倍数。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         {
-          "text": "全款支付 (3800)",
-          "impact": { "money": -3800 },
-          "asset_data": { "name": "游戏机", "initial_value": 3800, "change_rate": -0.2, "perk": { "type": "none", "value": 0, "desc": "纯消费品，无功能加成" } }
+          "text": "全款 (1800)",
+          "impact": { "money": -1800 },
+          "asset_data": { "name": "耳机", "initial_value": 1800, "change_rate": -0.12, "perk": { "type": "boost", "value": 1.2, "desc": "奖励 1.2 倍" } }
         },
-        { "text": "忍住不买", "impact": { "money": 0 } }
+        { "text": "不买", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "四年期创业板定存",
-      "text": "锁定 4 回合，复利 10%。支持初创企业理财计划。",
+      "index": 36,
+      "title": "理财实战：定期存零钱",
+      "text": "锁定 3 回合，享受 5% 的复利。坚持就是胜利。",
       "color_type": "green",
       "type": "save",
       "options": [
-        { "text": "存入 2500", "save_data": { "amount": 2500, "rate": 0.1, "type": "compound", "lock": 4 } },
-        { "text": "拒绝", "impact": { "money": 0 } }
+        { "text": "存入 800", "save_data": { "amount": 800, "rate": 0.05, "type": "compound", "lock": 3 } },
+        { "text": "跳过", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "投资品牌联名球鞋",
-      "text": "投入 1800 抢购限量款。成功可获利 1200，失败则亏损 1000。",
+      "index": 37,
+      "title": "投资：二手教科书转手",
+      "text": "投入 200 买旧书。成功获利 150，失败亏损全部。",
       "color_type": "green",
       "type": "invest",
       "options": [
-        { 
-          "text": "投入 1800", 
-          "probability": 0.6, 
-          "impact": { "money": 1200 }, 
-          "fail_impact": { "money": -1000 } 
-        },
+        { "text": "投资 200", "probability": 0.7, "impact": { "money": 150 }, "fail_impact": { "money": -200 } },
         { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "UI 设计实战训练营",
-      "text": "提升审美与工作效率，答题奖励 1.3 倍。",
-      "color_type": "green",
-      "type": "skill",
-      "options": [
-        {
-          "text": "参加培训 (1500)",
-          "impact": { "money": -1500 },
-          "perk": { "type": "boost", "value": 1.3, "desc": "答题奖励 1.3 倍" }
-        },
-        { "text": "不参加", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "购买高级人体工学椅",
-      "text": "提升答题舒适度，奖励增加 10%。",
+      "index": 38,
+      "title": "购买高级颜料套装",
+      "text": "开启副业，增加每回合工资收入。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         {
-          "text": "全款购买 (2200)",
-          "impact": { "money": -2200 },
-          "asset_data": { "name": "工学椅", "initial_value": 2200, "change_rate": -0.1, "perk": { "type": "boost", "value": 1.1, "desc": "答题效率提升 10%" } }
+          "text": "全款 (600)",
+          "impact": { "money": -600 },
+          "asset_data": { "name": "颜料", "initial_value": 600, "change_rate": -0.2, "perk": { "type": "salary", "value": 50, "desc": "工资增加 50" } }
         },
-        { "text": "拒绝购买", "impact": { "money": 0 } }
+        { "text": "不买", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "两回合超额收益账户",
-      "text": "限时账户，仅锁定 2 回合，复利高达 12%。",
+      "index": 39,
+      "title": "购买安全意外险",
+      "text": "抵御日常生活中各种不可预测的突发支出。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        { "text": "购买 (100)", "impact": { "money": -100 }, "perk": { "type": "shield", "value": "accident", "desc": "抵御一次意外" } },
+        { "text": "不买", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 40,
+      "title": "【意外】班费收缴",
+      "text": "突然要交一笔班费和校服费。属于强制性消费。",
+      "color_type": "red",
+      "type": "accident",
+      "options": [
+        { "text": "交钱", "impact": { "money": -350 }, "description": "应急储蓄派上用场了。" }
+      ]
+    },
+    {
+      "index": 41,
+      "title": "投资：手工串珠饰品",
+      "text": "投入 150 买材料做手工。成功获利 250，失败亏损 100。",
+      "color_type": "green",
+      "type": "invest",
+      "options": [
+        { "text": "投资 150", "probability": 0.6, "impact": { "money": 250 }, "fail_impact": { "money": -100 } },
+        { "text": "拒绝", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 42,
+      "title": "购买智能错题打印机",
+      "text": "提高学习效率，答题奖励倍增 1.4 倍。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        {
+          "text": "购买 (600)",
+          "impact": { "money": -600 },
+          "asset_data": { "name": "打印机", "initial_value": 600, "change_rate": -0.1, "perk": { "type": "boost", "value": 1.4, "desc": "奖励 1.4 倍" } }
+        },
+        { "text": "不需要", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 43,
+      "title": "校园创客基地理财账户",
+      "text": "高收益复利账户。锁定 4 回合，复利 10%。",
       "color_type": "green",
       "type": "save",
       "options": [
-        { "text": "存入 4000", "save_data": { "amount": 4000, "rate": 0.12, "type": "compound", "lock": 2 } },
-        { "text": "暂不考虑", "impact": { "money": 0 } }
+        { "text": "存入 1500", "save_data": { "amount": 1500, "rate": 0.1, "type": "compound", "lock": 4 } },
+        { "text": "不存", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买旗舰台式电脑",
-      "text": "强大的生产力工具，承接外包业务，每回合工资增加 400。",
+      "index": 44,
+      "title": "【意外】忘记带水壶",
+      "text": "口渴难耐，必须在学校自动贩卖机买昂贵的饮料。",
+      "color_type": "red",
+      "type": "accident",
+      "options": [
+        { "text": "购买饮料", "impact": { "money": -50 }, "description": "如果你买了【护脊书包】，里面自带备用水壶，损失为 0。" }
+      ]
+    },
+    {
+      "index": 45,
+      "title": "购买限量版手办",
+      "text": "纯消费品。保值率一般，无属性加成。",
+      "color_type": "purple",
+      "type": "spend",
+      "options": [
+        { "text": "购买 (800)", "impact": { "money": -800 }, "asset_data": { "name": "手办", "initial_value": 800, "change_rate": -0.05, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } } },
+        { "text": "忍住", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 46,
+      "title": "课外兴趣班：少儿编程",
+      "text": "学会写小游戏卖钱。每回合工资收入增加。",
+      "color_type": "green",
+      "type": "skill",
+      "options": [
+        { "text": "支付 1500", "impact": { "money": -1500 }, "perk": { "type": "salary", "value": 250, "desc": "工资增加 250" } },
+        { "text": "不参加", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 47,
+      "title": "投资：校园报刊投稿",
+      "text": "投入 100 买信封和邮票寄稿件。成功获稿费 500，失败亏损全部。",
+      "color_type": "green",
+      "type": "invest",
+      "options": [
+        { "text": "投稿 (100)", "probability": 0.3, "impact": { "money": 500 }, "fail_impact": { "money": -100 } },
+        { "text": "放弃", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "index": 48,
+      "title": "购买台式电脑",
+      "text": "生产力工具。可全款或分期获得。增加工资收益。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         {
           "text": "全款支付 (12000)",
           "impact": { "money": -12000 },
-          "asset_data": { "name": "台式机", "initial_value": 12000, "change_rate": -0.1, "perk": { "type": "salary", "value": 400, "desc": "工资增加 400" } }
+          "asset_data": { "name": "电脑", "initial_value": 12000, "change_rate": -0.1, "perk": { "type": "salary", "value": 400, "desc": "工资增加 400" } }
         },
         {
           "text": "分期 (首付2000, 每期1100, 10期)",
           "installment": { "down_payment": -2000, "per_term": 1100, "terms": 10 },
-          "asset_data": { "name": "台式机", "initial_value": 12000, "change_rate": -0.1, "perk": { "type": "salary", "value": 400, "desc": "工资增加 400" } }
-        },
-        { "text": "拒绝消费", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "投资网红奶茶店代理",
-      "text": "投入 5000。成功可获得 4500 利润，失败则亏损 3000 元成本。",
-      "color_type": "green",
-      "type": "invest",
-      "options": [
-        { 
-          "text": "投入 5000", 
-          "probability": 0.5, 
-          "impact": { "money": 4500 }, 
-          "fail_impact": { "money": -3000 } 
-        },
-        { "text": "放弃", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "五回合国债储蓄",
-      "text": "极度稳健。锁定 5 回合，单利 4.5%。",
-      "color_type": "green",
-      "type": "save",
-      "options": [
-        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.045, "type": "simple", "lock": 5 } },
-        { "text": "拒绝", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "购买高级西装/礼服",
-      "text": "提升形象，每回合面试/绩效奖励工资增加 100。",
-      "color_type": "purple",
-      "type": "spend",
-      "options": [
-        {
-          "text": "全款购买 (2500)",
-          "impact": { "money": -2500 },
-          "asset_data": { "name": "西装", "initial_value": 2500, "change_rate": -0.05, "perk": { "type": "salary", "value": 100, "desc": "工资增加 100" } }
-        },
-        { "text": "拒绝消费", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "心理咨询与解压课",
-      "text": "提升抗压，免疫下一次因心情不佳导致的意外罚款。",
-      "color_type": "green",
-      "type": "skill",
-      "options": [
-        {
-          "text": "支付 600 学费",
-          "impact": { "money": -600 },
-          "perk": { "type": "shield", "value": "accident", "desc": "免疫下一次意外" }
-        },
-        { "text": "不参与", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "购买智能手表",
-      "text": "监控状态，使答题奖励获得 1.1 倍加成。",
-      "color_type": "purple",
-      "type": "spend",
-      "options": [
-        {
-          "text": "全款支付 (2800)",
-          "impact": { "money": -2800 },
-          "asset_data": { "name": "智能手表", "initial_value": 2800, "change_rate": -0.2, "perk": { "type": "boost", "value": 1.1, "desc": "答题奖励 1.1 倍" } }
-        },
-        { "text": "拒绝", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "三回合余额宝体验",
-      "text": "低门槛理财，锁定 3 回合，复利 3%。",
-      "color_type": "green",
-      "type": "save",
-      "options": [
-        { "text": "存入 500", "save_data": { "amount": 500, "rate": 0.03, "type": "compound", "lock": 3 } },
-        { "text": "跳过", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "投资二手电动踏板车",
-      "text": "投入 800。成功获利 400，失败则亏损 500 元。",
-      "color_type": "green",
-      "type": "invest",
-      "options": [
-        { 
-          "text": "投入 800", 
-          "probability": 0.8, 
-          "impact": { "money": 400 }, 
-          "fail_impact": { "money": -500 } 
-        },
-        { "text": "拒绝", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "购买高端防盗门锁",
-      "text": "功能性支出，防止入室窃贼导致的钱财流失。",
-      "color_type": "purple",
-      "type": "spend",
-      "options": [
-        {
-          "text": "购买 (400)",
-          "impact": { "money": -400 },
-          "perk": { "type": "shield", "value": "accident", "desc": "防止财产损失类意外" }
-        },
-        { "text": "拒绝", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "专业口译速成班",
-      "text": "获得高级翻译技能，永久增加工资 200。",
-      "color_type": "green",
-      "type": "skill",
-      "options": [
-        {
-          "text": "支付 1200",
-          "impact": { "money": -1200 },
-          "perk": { "type": "salary", "value": 200, "desc": "工资增加 200" }
-        },
-        { "text": "放弃学习", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "购买二手机械手表",
-      "text": "经典机械表，保值率极高。无功能加成。",
-      "color_type": "purple",
-      "type": "spend",
-      "options": [
-        {
-          "text": "全款支付 (4500)",
-          "impact": { "money": -4500 },
-          "asset_data": { "name": "机械表", "initial_value": 4500, "change_rate": -0.02, "perk": { "type": "none", "value": 0, "desc": "纯消费品，无功能加成" } }
+          "asset_data": { "name": "电脑", "initial_value": 12000, "change_rate": -0.1, "perk": { "type": "salary", "value": 400, "desc": "工资增加 400" } }
         },
         { "text": "不买", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "两回合紧急备用金储蓄",
-      "text": "极短周期理财，锁定 2 回合，单利 3.5%。",
+      "index": 49,
+      "title": "【意外】借钱给同学没还",
+      "text": "你借钱给同学买零食，结果他忘记还了。这是负债带来的风险。",
+      "color_type": "red",
+      "type": "accident",
+      "options": [
+        { "text": "自认倒霉", "impact": { "money": -200 }, "description": "学习理财也要学会评估他人的信用。" }
+      ]
+    },
+    {
+      "index": 50,
+      "title": "理财智慧：长期定存 Plus",
+      "text": "终极储蓄方案。锁定 5 回合，享受 15% 的复利回报。",
       "color_type": "green",
       "type": "save",
       "options": [
-        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.035, "type": "simple", "lock": 2 } },
-        { "text": "不需要", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "购买折叠跑步机",
-      "text": "保持精神饱满，答题及工作奖励 1.2 倍。",
-      "color_type": "purple",
-      "type": "spend",
-      "options": [
-        {
-          "text": "全款支付 (2500)",
-          "impact": { "money": -2500 },
-          "asset_data": { "name": "跑步机", "initial_value": 2500, "change_rate": -0.25, "perk": { "type": "boost", "value": 1.2, "desc": "奖励 1.2 倍" } }
-        },
-        { "text": "拒绝购买", "impact": { "money": 0 } }
-      ]
-    },
-    {
-      "title": "投资大学生艺术展",
-      "text": "投入 3500 赞助。成功获利 6000，失败则亏损 3000 元。",
-      "color_type": "green",
-      "type": "invest",
-      "options": [
-        { 
-          "text": "赞助 3500", 
-          "probability": 0.4, 
-          "impact": { "money": 6000 }, 
-          "fail_impact": { "money": -3000 } 
-        },
-        { "text": "不参与", "impact": { "money": 0 } }
+        { "text": "存入 5000", "save_data": { "amount": 5000, "rate": 0.15, "type": "compound", "lock": 5 } },
+        { "text": "不考虑", "impact": { "money": 0 } }
       ]
     }
   ]
 }
+```

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>财富大冒险 - 教师监控中心 V21.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAYVSpY_YYquayLS9jydw8awzJ5GX7GZIk",
+            authDomain: "dafuweng-7254e.firebaseapp.com",
+            projectId: "dafuweng-7254e",
+            storageBucket: "dafuweng-7254e.firebasestorage.app",
+            messagingSenderId: "400417510898",
+            appId: "1:400417510898:web:72dbe5fe70b8024d3f476b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const gameRef = collection(db, "gameData");
+
+        let allGroups = {};
+
+        // 监听云端数据
+        onSnapshot(gameRef, (snapshot) => {
+            snapshot.docChanges().forEach((change) => {
+                if (change.type === "removed") delete allGroups[change.doc.id];
+                else allGroups[change.doc.id] = change.doc.data();
+            });
+            renderDashboard();
+            renderLeaderboard();
+        });
+
+        // 渲染小组卡片
+        function renderDashboard() {
+            const container = document.getElementById('group-container');
+            container.innerHTML = '';
+            const groupIds = Object.keys(allGroups).sort();
+
+            if(groupIds.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-20 text-gray-400">等待小组登录...</div>`;
+                return;
+            }
+
+            groupIds.forEach(groupId => {
+                const data = allGroups[groupId];
+                const card = document.createElement('div');
+                card.className = "bg-white p-5 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all";
+                
+                let playerHtml = data.players.map((p, idx) => `
+                    <div class="flex justify-between items-center text-sm mb-2 p-2 bg-slate-50 rounded-lg hover:bg-blue-50 cursor-pointer" 
+                         onclick="window.showStudentDetail('${groupId}', ${idx})">
+                        <span class="font-bold text-slate-700">👤 ${p.name} <small class="text-blue-400 text-[10px]">Lv${p.level}</small></span>
+                        <span class="${p.money < 0 ? 'text-red-500' : 'text-green-600'} font-black">${Math.floor(p.money)}💰</span>
+                    </div>
+                `).join('');
+                
+                card.innerHTML = `
+                    <div class="flex justify-between items-center border-b pb-3 mb-3">
+                        <h3 class="font-black text-xl text-slate-800">${groupId}</h3>
+                        <span class="text-xs font-bold text-slate-400 italic">回合 ${data.round}</span>
+                    </div>
+                    <div class="space-y-1">${playerHtml}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 渲染全班排行榜 (Top 10)
+        function renderLeaderboard() {
+            const list = document.getElementById('leaderboard-list');
+            let allPlayers = [];
+            Object.values(allGroups).forEach(group => {
+                group.players.forEach(p => allPlayers.push({...p, group: group.groupId}));
+            });
+            
+            allPlayers.sort((a,b) => b.money - a.money);
+            
+            list.innerHTML = allPlayers.slice(0, 10).map((p, i) => `
+                <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm mb-2 border-l-4" style="border-color:${p.color}">
+                    <div class="flex items-center gap-3">
+                        <span class="text-lg font-black text-slate-300 w-5">${i+1}</span>
+                        <div>
+                            <p class="font-bold text-slate-800 leading-none">${p.name}</p>
+                            <p class="text-[10px] text-slate-400 uppercase font-bold">${p.group}</p>
+                        </div>
+                    </div>
+                    <span class="text-blue-600 font-black">${Math.floor(p.money)}</span>
+                </div>
+            `).join('');
+        }
+
+        // 弹出学生详细日志 (增加滚动修复)
+        window.showStudentDetail = (groupId, playerIdx) => {
+            const player = allGroups[groupId].players[playerIdx];
+            const modal = document.getElementById('log-modal');
+            const body = document.getElementById('modal-body');
+            
+            document.getElementById('modal-title').innerText = `${player.name} (${groupId}) 的账本`;
+            
+            let logHtml = `<div class="divide-y divide-gray-100">`;
+            if(!player.history || player.history.length === 0) {
+                logHtml += `<p class="text-center py-10 text-gray-400">暂无财务记录</p>`;
+            } else {
+                player.history.slice().reverse().forEach(h => {
+                    const color = h.change >= 0 ? 'text-green-600' : 'text-red-500';
+                    logHtml += `
+                        <div class="flex justify-between py-3 px-1 text-sm">
+                            <span class="text-gray-400 font-bold w-12">R${h.round}</span>
+                            <span class="flex-1 text-slate-700">${h.event}</span>
+                            <span class="${color} font-black w-20 text-right">${h.change >= 0 ? '+' : ''}${h.change}</span>
+                        </div>`;
+                });
+            }
+            logHtml += `</div>`;
+            body.innerHTML = logHtml;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        };
+
+        window.closeLog = () => {
+            document.getElementById('log-modal').classList.add('hidden');
+            document.getElementById('log-modal').classList.remove('flex');
+        };
+
+        window.sendEndSignal = async () => {
+            if(confirm("确定发送【结算】信号？学生将玩完当前轮并多加一轮。")) {
+                await setDoc(doc(db, "control", "gameStatus"), { command: "end", timestamp: Date.now() });
+            }
+        };
+
+        window.resetAll = async () => {
+            if(confirm("警告：清空全班数据？此操作不可撤销。")) {
+                for (const id of Object.keys(allGroups)) await deleteDoc(doc(db, "gameData", id));
+                await setDoc(doc(db, "control", "gameStatus"), { command: "reset", timestamp: Date.now() });
+                location.reload();
+            }
+        };
+    </script>
+    <style>
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-slate-50 p-6 font-sans">
+
+    <!-- 顶部状态栏 -->
+    <header class="flex justify-between items-center mb-8 bg-slate-900 p-6 rounded-3xl shadow-xl">
+        <div>
+            <h1 class="text-2xl font-black text-white italic">WEALTH ADVENTURE</h1>
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Teacher Monitoring Center</p>
+        </div>
+        <div class="flex gap-3">
+            <button onclick="sendEndSignal()" class="bg-amber-400 hover:bg-amber-500 text-amber-950 px-6 py-2 rounded-xl font-black transition-all">🏁 一键结算</button>
+            <button onclick="resetAll()" class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-2 rounded-xl font-black transition-all">🔄 重置全班</button>
+        </div>
+    </header>
+
+    <div class="grid grid-cols-12 gap-8">
+        <!-- 左侧：小组实时战况 -->
+        <div class="col-span-12 lg:col-span-9">
+            <h2 class="text-sm font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
+                <span class="w-8 h-[2px] bg-slate-300 mr-2"></span> 小组战况实时流
+            </h2>
+            <div id="group-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- 动态卡片 -->
+            </div>
+        </div>
+
+        <!-- 右侧：排行榜 -->
+        <div class="col-span-12 lg:col-span-3">
+            <h2 class="text-sm font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
+                <span class="w-8 h-[2px] bg-slate-300 mr-2"></span> 全班首富 Top 10
+            </h2>
+            <div id="leaderboard-list" class="bg-slate-100 p-4 rounded-3xl min-h-[600px]">
+                <!-- 动态排名 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 修复后的日志弹窗 -->
+    <div id="log-modal" class="fixed inset-0 bg-slate-900/80 hidden items-center justify-center z-50 p-4 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-md rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden">
+            <!-- 头部固定 -->
+            <div class="p-8 border-b border-slate-100 bg-slate-50">
+                <h2 id="modal-title" class="text-xl font-black text-slate-800 leading-none"></h2>
+                <p class="text-xs text-slate-400 mt-2 font-bold uppercase tracking-tighter">Financial Footprint Report</p>
+            </div>
+            
+            <!-- 内容区：允许滚动 -->
+            <div id="modal-body" class="p-8 overflow-y-auto custom-scroll flex-1 max-h-[50vh]">
+                <!-- 内容加载处 -->
+            </div>
+            
+            <!-- 底部固定按钮 -->
+            <div class="p-6 bg-slate-50 border-t border-slate-100">
+                <button onclick="closeLog()" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-black shadow-lg hover:bg-slate-800 transition-all">确认并关闭</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

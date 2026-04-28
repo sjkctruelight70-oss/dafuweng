@@ -8,7 +8,7 @@
       "type": "save",
       "options": [
         { "text": "存入 200", "save_data": { "amount": 200, "rate": 0.02, "type": "simple", "lock": 2 } },
-        { "text": "不存了", "impact": { "money": 0 } }
+        { "text": "暂不存钱", "impact": { "money": 0 } }
       ]
     },
     {
@@ -28,7 +28,7 @@
           "installment": { "down_payment": -1000, "per_term": 1100, "terms": 5 },
           "asset_data": { "name": "公路车", "initial_value": 6000, "change_rate": -0.05, "perk": { "type": "move", "value": 2, "desc": "步数翻倍" } }
         },
-        { "text": "拒绝", "impact": { "money": 0 } }
+        { "text": "不需要，走路挺好", "impact": { "money": 0 } }
       ]
     },
     {
@@ -39,20 +39,20 @@
       "type": "invest",
       "options": [
         { "text": "投入 1000", "probability": 0.75, "impact": { "money": 800 }, "fail_impact": { "money": -1000 } },
-        { "text": "暂不参加", "impact": { "money": 0 } }
+        { "text": "风险太高，不参加", "impact": { "money": 0 } }
       ]
     },
     {
       "index": 4,
       "title": "购买电子锁存钱罐",
-      "text": "理智消费。这种存钱罐更安全，能防御“弟弟偷拿钱”的意外。",
+      "text": "理智消费。这种存钱罐更安全，能防御“存钱罐碎了”的意外。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         {
           "text": "买一个 (300)",
           "impact": { "money": -300 },
-          "asset_data": { "name": "电子锁", "initial_value": 300, "change_rate": -0.1, "perk": { "type": "shield", "value": "accident", "desc": "防御失窃意外" } }
+          "asset_data": { "name": "电子锁存钱罐", "initial_value": 300, "change_rate": -0.1, "perk": { "type": "shield", "value": "accident", "desc": "防御失窃意外" } }
         },
         { "text": "不需要", "impact": { "money": 0 } }
       ]
@@ -84,7 +84,7 @@
           "installment": { "down_payment": -800, "per_term": 500, "terms": 6 },
           "asset_data": { "name": "绘图板", "initial_value": 3200, "change_rate": -0.08, "perk": { "type": "salary", "value": 120, "desc": "每回合工资增加 120" } }
         },
-        { "text": "拒绝", "impact": { "money": 0 } }
+        { "text": "暂不需要副业", "impact": { "money": 0 } }
       ]
     },
     {
@@ -95,13 +95,13 @@
       "type": "skill",
       "options": [
         { "text": "交费 (500)", "impact": { "money": -500 }, "perk": { "type": "boost", "value": 1.5, "desc": "答题奖励 1.5 倍" } },
-        { "text": "不听课", "impact": { "money": 0 } }
+        { "text": "不听课了", "impact": { "money": 0 } }
       ]
     },
     {
       "index": 8,
       "title": "【意外】电信诈骗",
-      "text": "有人在游戏里骗你中奖了，如果你没买保险，你的余额危险了！",
+      "text": "有人在游戏里骗你中奖了，如果你没买网络安全险，你的余额危险了！",
       "color_type": "red",
       "type": "accident",
       "options": [
@@ -116,7 +116,7 @@
       "type": "spend",
       "options": [
         { "text": "购买 (150)", "impact": { "money": -150 }, "perk": { "type": "shield", "value": "accident", "desc": "抵御一次诈骗" } },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买了", "impact": { "money": 0 } }
       ]
     },
     {
@@ -127,7 +127,7 @@
       "type": "invest",
       "options": [
         { "text": "投资 2000", "probability": 0.6, "impact": { "money": 1500 }, "fail_impact": { "money": -1200 } },
-        { "text": "放弃", "impact": { "money": 0 } }
+        { "text": "不想做代理", "impact": { "money": 0 } }
       ]
     },
     {
@@ -138,7 +138,7 @@
       "type": "spend",
       "options": [
         { "text": "购买 (100)", "impact": { "money": -100 }, "asset_data": { "name": "自动笔", "initial_value": 100, "change_rate": -0.2, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } } },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买，旧的还能用", "impact": { "money": 0 } }
       ]
     },
     {
@@ -149,22 +149,22 @@
       "type": "save",
       "options": [
         { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.08, "type": "compound", "lock": 3 } },
-        { "text": "不参与", "impact": { "money": 0 } }
+        { "text": "不参与储蓄", "impact": { "money": 0 } }
       ]
     },
     {
       "index": 13,
       "title": "购买高级护脊书包",
-      "text": "背着更轻松，让你每回合掷骰子步数增加 20%。",
+      "text": "背着更轻松，让你每回合掷骰子步数增加 20%。还附带备用水壶。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         {
           "text": "全款支付 (800)",
           "impact": { "money": -800 },
-          "asset_data": { "name": "护脊书包", "initial_value": 800, "change_rate": -0.1, "perk": { "type": "move", "value": 1.2, "desc": "步数增加 20%" } }
+          "asset_data": { "name": "护脊书包", "initial_value": 800, "change_rate": -0.1, "perk": { "type": "shield", "value": "accident", "desc": "步数+20%且自带水壶" } }
         },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买了", "impact": { "money": 0 } }
       ]
     },
     {
@@ -175,18 +175,18 @@
       "type": "invest",
       "options": [
         { "text": "投资 500", "probability": 0.4, "impact": { "money": 600 }, "fail_impact": { "money": -400 } },
-        { "text": "观望", "impact": { "money": 0 } }
+        { "text": "不感兴趣", "impact": { "money": 0 } }
       ]
     },
     {
       "index": 15,
       "title": "心理素质：如何面对负债压力",
-      "text": "学习后能让你即便在欠钱时也保持冷静，免除一次意外损失。",
+      "text": "学习后能让你即便在欠钱时也保持冷静，免除焦虑带来的意外损失。",
       "color_type": "green",
       "type": "skill",
       "options": [
         { "text": "交费 (400)", "impact": { "money": -400 }, "perk": { "type": "shield", "value": "accident", "desc": "免疫压力意外" } },
-        { "text": "不学", "impact": { "money": 0 } }
+        { "text": "不学了", "impact": { "money": 0 } }
       ]
     },
     {
@@ -216,7 +216,7 @@
           "installment": { "down_payment": -1200, "per_term": 500, "terms": 10 },
           "asset_data": { "name": "手机", "initial_value": 5200, "change_rate": -0.15, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } }
         },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买，旧手机还能用", "impact": { "money": 0 } }
       ]
     },
     {
@@ -227,7 +227,7 @@
       "type": "invest",
       "options": [
         { "text": "投入 300", "probability": 0.8, "impact": { "money": 200 }, "fail_impact": { "money": -300 } },
-        { "text": "跳过", "impact": { "money": 0 } }
+        { "text": "跳过投资", "impact": { "money": 0 } }
       ]
     },
     {
@@ -238,7 +238,7 @@
       "type": "save",
       "options": [
         { "text": "存入 500", "save_data": { "amount": 500, "rate": 0.04, "type": "simple", "lock": 2 } },
-        { "text": "不存", "impact": { "money": 0 } }
+        { "text": "不存，留着备用", "impact": { "money": 0 } }
       ]
     },
     {
@@ -249,7 +249,7 @@
       "type": "spend",
       "options": [
         { "text": "购买 (2500)", "impact": { "money": -2500 }, "asset_data": { "name": "西装", "initial_value": 2500, "change_rate": -0.05, "perk": { "type": "none", "value": 0, "desc": "无功能加成" } } },
-        { "text": "拒绝", "impact": { "money": 0 } }
+        { "text": "不买，太贵了", "impact": { "money": 0 } }
       ]
     },
     {
@@ -260,7 +260,7 @@
       "type": "invest",
       "options": [
         { "text": "抽扭蛋 (400)", "probability": 0.2, "impact": { "money": 1000 }, "fail_impact": { "money": -400 } },
-        { "text": "忍住", "impact": { "money": 0 } }
+        { "text": "忍住，不赌运气", "impact": { "money": 0 } }
       ]
     },
     {
@@ -273,9 +273,9 @@
         {
           "text": "买 (1500)",
           "impact": { "money": -1500 },
-          "asset_data": { "name": "手表", "initial_value": 1500, "change_rate": -0.2, "perk": { "type": "move", "value": 1.1, "desc": "步数增加 10%" } }
+          "asset_data": { "name": "智能手表", "initial_value": 1500, "change_rate": -0.2, "perk": { "type": "move", "value": 1.1, "desc": "步数增加 10%" } }
         },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不需要，有普通表", "impact": { "money": 0 } }
       ]
     },
     {
@@ -286,7 +286,7 @@
       "type": "skill",
       "options": [
         { "text": "交费 (800)", "impact": { "money": -800 }, "perk": { "type": "salary", "value": 100, "desc": "工资增加 100" } },
-        { "text": "不学", "impact": { "money": 0 } }
+        { "text": "不想学", "impact": { "money": 0 } }
       ]
     },
     {
@@ -297,7 +297,7 @@
       "type": "save",
       "options": [
         { "text": "存入 2000", "save_data": { "amount": 2000, "rate": 0.06, "type": "simple", "lock": 5 } },
-        { "text": "拒绝", "impact": { "money": 0 } }
+        { "text": "拒绝锁定资金", "impact": { "money": 0 } }
       ]
     },
     {
@@ -327,7 +327,7 @@
           "installment": { "down_payment": -800, "per_term": 350, "terms": 10 },
           "asset_data": { "name": "游戏机", "initial_value": 3800, "change_rate": -0.2, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } }
         },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买，浪费时间", "impact": { "money": 0 } }
       ]
     },
     {
@@ -338,7 +338,7 @@
       "type": "invest",
       "options": [
         { "text": "投入 600", "probability": 0.65, "impact": { "money": 400 }, "fail_impact": { "money": -300 } },
-        { "text": "拒绝", "impact": { "money": 0 } }
+        { "text": "拒绝投资", "impact": { "money": 0 } }
       ]
     },
     {
@@ -349,18 +349,18 @@
       "type": "spend",
       "options": [
         { "text": "全款 (400)", "impact": { "money": -400 }, "asset_data": { "name": "学习灯", "initial_value": 400, "change_rate": -0.1, "perk": { "type": "boost", "value": 1.2, "desc": "奖励提升 1.2 倍" } } },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买，光线充足", "impact": { "money": 0 } }
       ]
     },
     {
       "index": 29,
       "title": "提前还清部分分期",
-      "text": "理智行为。减少负债带来的未来利息压力。",
+      "text": "理智行为。减少负债带来的未来利息压力，并防御意外财务危机。",
       "color_type": "purple",
       "type": "spend",
       "options": [
         { "text": "还款 1000", "impact": { "money": -1000 }, "perk": { "type": "shield", "value": "accident", "desc": "省下未来利息" } },
-        { "text": "以后再说", "impact": { "money": 0 } }
+        { "text": "以后再说，先留现金", "impact": { "money": 0 } }
       ]
     },
     {
@@ -371,7 +371,7 @@
       "type": "invest",
       "options": [
         { "text": "投入 1000", "probability": 0.5, "impact": { "money": 1200 }, "fail_impact": { "money": -800 } },
-        { "text": "观望", "impact": { "money": 0 } }
+        { "text": "观望，不买胶卷", "impact": { "money": 0 } }
       ]
     },
     {
@@ -382,7 +382,7 @@
       "type": "spend",
       "options": [
         { "text": "购买 (1200)", "impact": { "money": -1200 }, "asset_data": { "name": "词典", "initial_value": 1200, "change_rate": -0.15, "perk": { "type": "boost", "value": 1.3, "desc": "奖励增加 1.3 倍" } } },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买，用纸质的", "impact": { "money": 0 } }
       ]
     },
     {
@@ -393,17 +393,17 @@
       "type": "save",
       "options": [
         { "text": "存入 300", "save_data": { "amount": 300, "rate": 0.03, "type": "compound", "lock": 2 } },
-        { "text": "不存", "impact": { "money": 0 } }
+        { "text": "不存，随时要用", "impact": { "money": 0 } }
       ]
     },
     {
       "index": 33,
       "title": "【意外】压岁钱被没收",
-      "text": "父母说要帮你存着，结果钱不见了！",
+      "text": "父母说要帮你存着，结果钱不见了！如果你存入了长期理财，他们就拿不到了。",
       "color_type": "red",
       "type": "accident",
       "options": [
-        { "text": "难受", "impact": { "money": -500 }, "description": "平时要学会自己理财，合理分配账户。" }
+        { "text": "难受", "impact": { "money": -500 }, "description": "如果你购买了【提前还清部分分期】，代表你已将钱用于财务正轨，损失为 0。" }
       ]
     },
     {
@@ -414,7 +414,7 @@
       "type": "invest",
       "options": [
         { "text": "交费 1500", "probability": 0.45, "impact": { "money": 3000 }, "fail_impact": { "money": -1500 } },
-        { "text": "放弃", "impact": { "money": 0 } }
+        { "text": "放弃投资摊位", "impact": { "money": 0 } }
       ]
     },
     {
@@ -429,7 +429,7 @@
           "impact": { "money": -1800 },
           "asset_data": { "name": "耳机", "initial_value": 1800, "change_rate": -0.12, "perk": { "type": "boost", "value": 1.2, "desc": "奖励 1.2 倍" } }
         },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买，太贵了", "impact": { "money": 0 } }
       ]
     },
     {
@@ -440,7 +440,7 @@
       "type": "save",
       "options": [
         { "text": "存入 800", "save_data": { "amount": 800, "rate": 0.05, "type": "compound", "lock": 3 } },
-        { "text": "跳过", "impact": { "money": 0 } }
+        { "text": "跳过储蓄", "impact": { "money": 0 } }
       ]
     },
     {
@@ -451,7 +451,7 @@
       "type": "invest",
       "options": [
         { "text": "投资 200", "probability": 0.7, "impact": { "money": 150 }, "fail_impact": { "money": -200 } },
-        { "text": "不参与", "impact": { "money": 0 } }
+        { "text": "不参与，嫌麻烦", "impact": { "money": 0 } }
       ]
     },
     {
@@ -466,7 +466,7 @@
           "impact": { "money": -600 },
           "asset_data": { "name": "颜料", "initial_value": 600, "change_rate": -0.2, "perk": { "type": "salary", "value": 50, "desc": "工资增加 50" } }
         },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买，旧的还能画", "impact": { "money": 0 } }
       ]
     },
     {
@@ -477,17 +477,17 @@
       "type": "spend",
       "options": [
         { "text": "购买 (100)", "impact": { "money": -100 }, "perk": { "type": "shield", "value": "accident", "desc": "抵御一次意外" } },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买了", "impact": { "money": 0 } }
       ]
     },
     {
       "index": 40,
       "title": "【意外】班费收缴",
-      "text": "突然要交一笔班费和校服费。属于强制性消费。",
+      "text": "突然要交一笔班费和校服费。属于强制性支出，如果你有保险则可免除部分损失。",
       "color_type": "red",
       "type": "accident",
       "options": [
-        { "text": "交钱", "impact": { "money": -350 }, "description": "应急储蓄派上用场了。" }
+        { "text": "交钱", "impact": { "money": -350 }, "description": "如果你有【安全意外险】，损失为 0。" }
       ]
     },
     {
@@ -498,7 +498,7 @@
       "type": "invest",
       "options": [
         { "text": "投资 150", "probability": 0.6, "impact": { "money": 250 }, "fail_impact": { "money": -100 } },
-        { "text": "拒绝", "impact": { "money": 0 } }
+        { "text": "拒绝手工投资", "impact": { "money": 0 } }
       ]
     },
     {
@@ -513,7 +513,7 @@
           "impact": { "money": -600 },
           "asset_data": { "name": "打印机", "initial_value": 600, "change_rate": -0.1, "perk": { "type": "boost", "value": 1.4, "desc": "奖励 1.4 倍" } }
         },
-        { "text": "不需要", "impact": { "money": 0 } }
+        { "text": "不需要，手动抄写", "impact": { "money": 0 } }
       ]
     },
     {
@@ -524,7 +524,7 @@
       "type": "save",
       "options": [
         { "text": "存入 1500", "save_data": { "amount": 1500, "rate": 0.1, "type": "compound", "lock": 4 } },
-        { "text": "不存", "impact": { "money": 0 } }
+        { "text": "不存，想买东西", "impact": { "money": 0 } }
       ]
     },
     {
@@ -534,7 +534,7 @@
       "color_type": "red",
       "type": "accident",
       "options": [
-        { "text": "购买饮料", "impact": { "money": -50 }, "description": "如果你买了【护脊书包】，里面自带备用水壶，损失为 0。" }
+        { "text": "购买饮料", "impact": { "money": -50 }, "description": "如果你有【护脊书包】，损失为 0。" }
       ]
     },
     {
@@ -545,7 +545,7 @@
       "type": "spend",
       "options": [
         { "text": "购买 (800)", "impact": { "money": -800 }, "asset_data": { "name": "手办", "initial_value": 800, "change_rate": -0.05, "perk": { "type": "none", "value": 0, "desc": "纯消费品" } } },
-        { "text": "忍住", "impact": { "money": 0 } }
+        { "text": "忍住不买", "impact": { "money": 0 } }
       ]
     },
     {
@@ -556,7 +556,7 @@
       "type": "skill",
       "options": [
         { "text": "支付 1500", "impact": { "money": -1500 }, "perk": { "type": "salary", "value": 250, "desc": "工资增加 250" } },
-        { "text": "不参加", "impact": { "money": 0 } }
+        { "text": "太难了不学", "impact": { "money": 0 } }
       ]
     },
     {
@@ -567,7 +567,7 @@
       "type": "invest",
       "options": [
         { "text": "投稿 (100)", "probability": 0.3, "impact": { "money": 500 }, "fail_impact": { "money": -100 } },
-        { "text": "放弃", "impact": { "money": 0 } }
+        { "text": "放弃投稿", "impact": { "money": 0 } }
       ]
     },
     {
@@ -587,7 +587,7 @@
           "installment": { "down_payment": -2000, "per_term": 1100, "terms": 10 },
           "asset_data": { "name": "电脑", "initial_value": 12000, "change_rate": -0.1, "perk": { "type": "salary", "value": 400, "desc": "工资增加 400" } }
         },
-        { "text": "不买", "impact": { "money": 0 } }
+        { "text": "不买，太贵了", "impact": { "money": 0 } }
       ]
     },
     {
@@ -608,7 +608,7 @@
       "type": "save",
       "options": [
         { "text": "存入 5000", "save_data": { "amount": 5000, "rate": 0.15, "type": "compound", "lock": 5 } },
-        { "text": "不考虑", "impact": { "money": 0 } }
+        { "text": "现金为王，不存", "impact": { "money": 0 } }
       ]
     }
   ]

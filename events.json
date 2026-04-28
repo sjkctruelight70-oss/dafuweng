@@ -1,317 +1,321 @@
 {
   "events": [
     {
-      "title": "购买新款平板电脑",
-      "text": "为了提高学习效率，你打算买一台平板电脑。全款 4000💰。",
+      "title": "购买旗舰级智能手机",
+      "text": "你的手机电池寿命告急，新款旗舰机发售了，价格 6000💰。",
       "type": "spend",
       "options": [
-        { "text": "全款支付 (4000)", "impact": { "money": -4000 } },
-        { "text": "分期付款 (首付500, 每期350, 12期)", "installment": { "down_payment": -500, "per_term": 350, "terms": 12 } }
+        { "text": "全款支付 (6000)", "impact": { "money": -6000 } },
+        { "text": "分期付款 (首付600, 每期500, 12期)", "installment": { "down_payment": -600, "per_term": 500, "terms": 12 } },
+        { "text": "再坚持用半年", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "校园理财周：定期储蓄",
-      "text": "校内银行开展理财周，提供高息定期存款（复利12%）。",
+      "title": "银行定期储蓄邀请",
+      "text": "银行推出 3 回合定期存款计划，你会存入多少？(年化单利 8%)",
       "type": "save",
       "options": [
-        { "text": "存入 500", "save_data": { "amount": 500, "rate": 0.12, "type": "compound", "lock": 3 } },
-        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.12, "type": "compound", "lock": 3 } },
-        { "text": "拒绝诱惑", "impact": { "money": 0 } }
+        { "text": "存入 500", "save_data": { "amount": 500, "rate": 0.08, "type": "simple", "lock": 3 } },
+        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.08, "type": "simple", "lock": 3 } },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "尝试股市“抄底”",
-      "text": "某科技股大幅回调，你觉得这是个入场好机会。",
+      "title": "校门口奶茶店众筹",
+      "text": "学长打算在校门口开分店，邀请你参与初期投资，看好学生消费能力吗？",
       "type": "invest",
       "options": [
         { 
           "text": "投入 2000 资金", 
-          "probability": 0.5, 
-          "impact": { "money": 1500 }, 
-          "fail_impact": { "money": -1200 } 
+          "probability": 0.65, 
+          "impact": { "money": 1200 }, 
+          "fail_impact": { "money": -800 } 
         },
-        { "text": "观望不动", "impact": { "money": 0 } }
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买考研/考公资料包",
-      "text": "备考资料包正在促销，总价 1200💰。",
+      "title": "突发急性肠胃炎",
+      "text": "昨晚的烧烤不太卫生，你不得不去挂急诊挂水，这是强制支出。",
+      "type": "accident",
+      "options": [
+        { "text": "支付医药费", "impact": { "money": -450 } }
+      ]
+    },
+    {
+      "title": "购买专业降噪耳机",
+      "text": "宿舍环境吵闹，你需要一个耳机来专注学习。价格 1800💰。",
       "type": "spend",
       "options": [
-        { "text": "全款支付 (1200)", "impact": { "money": -1200 } },
-        { "text": "分期付款 (首付200, 每期280, 4期)", "installment": { "down_payment": -200, "per_term": 280, "terms": 4 } }
+        { "text": "全款支付 (1800)", "impact": { "money": -1800 } },
+        { "text": "分期付款 (首付200, 每期350, 5期)", "installment": { "down_payment": -200, "per_term": 350, "terms": 5 } },
+        { "text": "戴耳塞凑合", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "兼职收入：零钱储蓄",
-      "text": "你获得了一笔 1000💰 的兼职收入，银行建议存入单利账户（8%）。",
+      "title": "互联网指数基金定投",
+      "text": "市场行情回暖，专家推荐定投 3 回合复利产品 (利率 10%)。",
       "type": "save",
       "options": [
-        { "text": "存入 200", "save_data": { "amount": 200, "rate": 0.08, "type": "simple", "lock": 3 } },
-        { "text": "存入 800", "save_data": { "amount": 800, "rate": 0.08, "type": "simple", "lock": 3 } },
-        { "text": "直接花掉", "impact": { "money": 0 } }
+        { "text": "定投 1000", "save_data": { "amount": 1000, "rate": 0.1, "type": "compound", "lock": 3 } },
+        { "text": "定投 2000", "save_data": { "amount": 2000, "rate": 0.1, "type": "compound", "lock": 3 } },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "投资室友的摆摊项目",
-      "text": "室友要在校庆卖奶茶，需要你出资购买原材料。",
+      "title": "尝试短线炒股",
+      "text": "社交平台都在讨论某科技股，波动巨大，风险极高。",
       "type": "invest",
       "options": [
         { 
-          "text": "出资 500", 
-          "probability": 0.8, 
-          "impact": { "money": 400 }, 
-          "fail_impact": { "money": -500 } 
-        }
+          "text": "投入 3000 搏一把", 
+          "probability": 0.4, 
+          "impact": { "money": 4500 }, 
+          "fail_impact": { "money": -2500 } 
+        },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "升级高配置游戏主机",
-      "text": "某 3A 大作发售，你需要一台更强的机器，价格 6000💰。",
+      "title": "自行车/电动车违停罚单",
+      "text": "为了赶课随意停车，你收到了一张交通罚单。",
+      "type": "accident",
+      "options": [
+        { "text": "缴纳罚款", "impact": { "money": -50 } }
+      ]
+    },
+    {
+      "title": "购买高性能笔记本电脑",
+      "text": "为了跑渲染软件，你打算购买工作站笔记本，价格 10000💰。",
       "type": "spend",
       "options": [
-        { "text": "全款支付 (6000)", "impact": { "money": -6000 } },
-        { "text": "分期付款 (首付1000, 每期500, 12期)", "installment": { "down_payment": -1000, "per_term": 500, "terms": 12 } }
+        { "text": "全款支付 (10000)", "impact": { "money": -10000 } },
+        { "text": "分期付款 (首付1000, 每期850, 12期)", "installment": { "down_payment": -1000, "per_term": 850, "terms": 12 } },
+        { "text": "暂时不买", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买“盲盒”基金",
-      "text": "一种新型混合基金，号称短期内有极高回报率。",
-      "type": "invest",
-      "options": [
-        { 
-          "text": "投入 1000", 
-          "probability": 0.4, 
-          "impact": { "money": 2000 }, 
-          "fail_impact": { "money": -1000 } 
-        }
-      ]
-    },
-    {
-      "title": "紧急备用金存款",
-      "text": "老师建议每个人都要有备用金，提供复利 6% 账户。",
+      "title": "假期兼职：工资储蓄",
+      "text": "你获得了一笔 1500💰 收入，存入 3 回合定期可享复利 6%。",
       "type": "save",
       "options": [
         { "text": "存入 500", "save_data": { "amount": 500, "rate": 0.06, "type": "compound", "lock": 3 } },
-        { "text": "存入 1500", "save_data": { "amount": 1500, "rate": 0.06, "type": "compound", "lock": 3 } }
+        { "text": "存入 1500", "save_data": { "amount": 1500, "rate": 0.06, "type": "compound", "lock": 3 } },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "二手单反相机",
-      "text": "社团活动需要，你打算入一个二手的入门级相机，2500💰。",
-      "type": "spend",
-      "options": [
-        { "text": "全款 (2500)", "impact": { "money": -2500 } },
-        { "text": "分期付款 (首付500, 每期400, 6期)", "installment": { "down_payment": -500, "per_term": 400, "terms": 6 } }
-      ]
-    },
-    {
-      "title": "投资虚拟货币",
-      "text": "某种“狗狗币”最近被社交媒体疯狂讨论。",
+      "title": "校园二手书生意",
+      "text": "期末周快到了，你可以投入资金收购二手教材再卖出。",
       "type": "invest",
       "options": [
         { 
-          "text": "投入 800 试水", 
-          "probability": 0.2, 
-          "impact": { "money": 5000 }, 
-          "fail_impact": { "money": -800 } 
+          "text": "投入 800 进货", 
+          "probability": 0.8, 
+          "impact": { "money": 600 }, 
+          "fail_impact": { "money": -400 } 
         },
-        { "text": "不参与投机", "impact": { "money": 0 } }
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买高端智能手表",
-      "text": "新款手表支持血氧检测，对健康管理很有帮助，价格 2400💰。",
+      "title": "弄坏实验室精密器材",
+      "text": "操作不当导致实验器材损坏，学院要求你赔偿部分维修费。",
+      "type": "accident",
+      "options": [
+        { "text": "支付赔偿", "impact": { "money": -800 } }
+      ]
+    },
+    {
+      "title": "购买次世代游戏主机",
+      "text": "你心心念念的游戏发售了，需要一台新主机，价格 4200💰。",
       "type": "spend",
       "options": [
-        { "text": "全款 (2400)", "impact": { "money": -2400 } },
-        { "text": "分期付款 (首付400, 每期400, 6期)", "installment": { "down_payment": -400, "per_term": 400, "terms": 6 } }
+        { "text": "全款支付 (4200)", "impact": { "money": -4200 } },
+        { "text": "分期付款 (首付200, 每期400, 12期)", "installment": { "down_payment": -200, "per_term": 400, "terms": 12 } },
+        { "text": "忍痛拒绝", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "稳健型国债逆回购",
-      "text": "市场行情波动大，国债逆回购是不错的避险选择（单利 5%）。",
+      "title": "稳健国债申购",
+      "text": "国家发行 3 回合特别国债，提供稳定的单利 4.5%。",
       "type": "save",
       "options": [
-        { "text": "投入 1000", "save_data": { "amount": 1000, "rate": 0.05, "type": "simple", "lock": 3 } },
-        { "text": "投入 2000", "save_data": { "amount": 2000, "rate": 0.05, "type": "simple", "lock": 3 } }
+        { "text": "申购 2000", "save_data": { "amount": 2000, "rate": 0.045, "type": "simple", "lock": 3 } },
+        { "text": "申购 5000", "save_data": { "amount": 5000, "rate": 0.045, "type": "simple", "lock": 3 } },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "假期旅游计划",
-      "text": "和同学约定去三亚旅游，旅行团费 3600💰。",
-      "type": "spend",
-      "options": [
-        { "text": "全款 (3600)", "impact": { "money": -3600 } },
-        { "text": "分期付款 (首付600, 每期650, 6期)", "installment": { "down_payment": -600, "per_term": 650, "terms": 6 } }
-      ]
-    },
-    {
-      "title": "黄金定投",
-      "text": "金价最近在震荡中上行，你打算定投一点实物金。",
+      "title": "投资学长的手游工作室",
+      "text": "学长的小团队正在开发独立游戏，需要资金完成最后的美术外包。",
       "type": "invest",
       "options": [
         { 
-          "text": "投入 1500", 
-          "probability": 0.7, 
-          "impact": { "money": 300 }, 
-          "fail_impact": { "money": -200 } 
-        }
+          "text": "天使轮投入 5000", 
+          "probability": 0.35, 
+          "impact": { "money": 10000 }, 
+          "fail_impact": { "money": -5000 } 
+        },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "定制正装西服",
-      "text": "实习面试需要一套体面的西服，价格 1800💰。",
+      "title": "由于迟到导致的奖学金停发",
+      "text": "因多次旷课触犯校规，本月 200💰 的勤工俭学补贴被取消。",
+      "type": "accident",
+      "options": [
+        { "text": "确认扣除", "impact": { "money": -200 } }
+      ]
+    },
+    {
+      "title": "购买定制西装/礼服",
+      "text": "为了准备大型晚宴或面试，你需要一套像样的礼服。价格 2500💰。",
       "type": "spend",
       "options": [
-        { "text": "全款 (1800)", "impact": { "money": -1800 } },
-        { "text": "分期付款 (首付300, 每期350, 5期)", "installment": { "down_payment": -300, "per_term": 350, "terms": 5 } }
+        { "text": "全款支付 (2500)", "impact": { "money": -2500 } },
+        { "text": "分期付款 (首付500, 每期450, 5期)", "installment": { "down_payment": -500, "per_term": 450, "terms": 5 } },
+        { "text": "租一套（跳过）", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "校内创业种子基金",
-      "text": "校友会为学生提供储蓄计划，支持未来的创业者（复利 15%）。",
+      "title": "货币基金余额宝储蓄",
+      "text": "活期金额过高？存入 3 回合灵活管理账户 (单利 3.5%)。",
       "type": "save",
       "options": [
-        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.15, "type": "compound", "lock": 3 } },
-        { "text": "不感兴趣", "impact": { "money": 0 } }
+        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.035, "type": "simple", "lock": 3 } },
+        { "text": "存入 3000", "save_data": { "amount": 3000, "rate": 0.035, "type": "simple", "lock": 3 } },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "健身房私教课",
-      "text": "你想改变体态，私教课总价 3000💰。",
-      "type": "spend",
-      "options": [
-        { "text": "全款 (3000)", "impact": { "money": -3000 } },
-        { "text": "分期付款 (首付500, 每期550, 5期)", "installment": { "down_payment": -500, "per_term": 550, "terms": 5 } }
-      ]
-    },
-    {
-      "title": "投资二手手机转卖",
-      "text": "低价收到一批二手手机，翻新后再卖出看能不能赚钱。",
+      "title": "加密货币二级市场",
+      "text": "某种“土狗币”正在疯涨，群友怂恿你跟风买入。",
       "type": "invest",
       "options": [
         { 
-          "text": "投入 3000", 
-          "probability": 0.6, 
-          "impact": { "money": 2000 }, 
-          "fail_impact": { "money": -1500 } 
-        }
-      ]
-    },
-    {
-      "title": "购买电动自行车",
-      "text": "为了通勤方便，你需要一辆小电驴，价格 2200💰。",
-      "type": "spend",
-      "options": [
-        { "text": "全款 (2200)", "impact": { "money": -2200 } },
-        { "text": "分期付款 (首付400, 每期350, 6期)", "installment": { "down_payment": -400, "per_term": 350, "terms": 6 } }
-      ]
-    },
-    {
-      "title": "指数基金定投",
-      "text": "市场处于估值低位，银行经理推荐定投指数基金（复利 10%）。",
-      "type": "save",
-      "options": [
-        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.1, "type": "compound", "lock": 3 } },
-        { "text": "存入 2000", "save_data": { "amount": 2000, "rate": 0.1, "type": "compound", "lock": 3 } }
-      ]
-    },
-    {
-      "title": "投资外卖配送站",
-      "text": "有朋友在大学城开外卖站，邀请你合伙分红。",
-      "type": "invest",
-      "options": [
-        { 
-          "text": "出资 4000", 
-          "probability": 0.55, 
-          "impact": { "money": 3000 }, 
-          "fail_impact": { "money": -2500 } 
-        }
-      ]
-    },
-    {
-      "title": "高端人体工学椅",
-      "text": "长期伏案学习，你需要一把好椅子保护腰椎，价格 1500💰。",
-      "type": "spend",
-      "options": [
-        { "text": "全款 (1500)", "impact": { "money": -1500 } },
-        { "text": "分期付款 (首付300, 每期350, 4期)", "installment": { "down_payment": -300, "per_term": 350, "terms": 4 } }
-      ]
-    },
-    {
-      "title": "投资盲盒潮玩店",
-      "text": "潮玩文化盛行，你决定加盟一家潮玩快闪店。",
-      "type": "invest",
-      "options": [
-        { 
-          "text": "投资 2500", 
-          "probability": 0.5, 
-          "impact": { "money": 4000 }, 
-          "fail_impact": { "money": -2500 } 
-        }
-      ]
-    },
-    {
-      "title": "购买正版设计软件",
-      "text": "为了做接单副业，你需要购买专业软件订阅，价格 1000💰。",
-      "type": "spend",
-      "options": [
-        { "text": "全款 (1000)", "impact": { "money": -1000 } },
-        { "text": "分期付款 (首付200, 每期300, 3期)", "installment": { "down_payment": -200, "per_term": 300, "terms": 3 } }
-      ]
-    },
-    {
-      "title": "学生成长基金计划",
-      "text": "这是一个为期 3 回合的互助储蓄项目（复利 8%）。",
-      "type": "save",
-      "options": [
-        { "text": "存入 500", "save_data": { "amount": 500, "rate": 0.08, "type": "compound", "lock": 3 } },
-        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.08, "type": "compound", "lock": 3 } }
-      ]
-    },
-    {
-      "title": "投资短视频工作室",
-      "text": "学长的工作室需要买一批补光灯和麦克风，寻求小额投资。",
-      "type": "invest",
-      "options": [
-        { 
-          "text": "出资 1200", 
-          "probability": 0.65, 
-          "impact": { "money": 1000 }, 
-          "fail_impact": { "money": -800 } 
-        }
-      ]
-    },
-    {
-      "title": "考取驾照培训",
-      "text": "寒假驾校报名费优惠，原价 3200💰。",
-      "type": "spend",
-      "options": [
-        { "text": "全款 (3200)", "impact": { "money": -3200 } },
-        { "text": "分期付款 (首付600, 每期550, 5期)", "installment": { "down_payment": -600, "per_term": 550, "terms": 5 } }
-      ]
-    },
-    {
-      "title": "投资剧本杀工作室",
-      "text": "校园周边剧本杀很火，你要入股增加本子的数量吗？",
-      "type": "invest",
-      "options": [
-        { 
-          "text": "投资 2000", 
-          "probability": 0.6, 
-          "impact": { "money": 1500 }, 
+          "text": "投入 1000 试水", 
+          "probability": 0.25, 
+          "impact": { "money": 6000 }, 
           "fail_impact": { "money": -1000 } 
-        }
+        },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     },
     {
-      "title": "购买降噪耳机",
-      "text": "宿舍太吵没法看书？买个顶级降噪耳机吧，价格 2000💰。",
+      "title": "购买高级网课套装",
+      "text": "某编程大牛出的全套课程，包含就业辅导，价格 3000💰。",
       "type": "spend",
       "options": [
-        { "text": "全款 (2000)", "impact": { "money": -2000 } },
-        { "text": "分期付款 (首付400, 每期350, 5期)", "installment": { "down_payment": -400, "per_term": 350, "terms": 5 } }
+        { "text": "全款支付 (3000)", "impact": { "money": -3000 } },
+        { "text": "分期付款 (首付300, 每期500, 6期)", "installment": { "down_payment": -300, "per_term": 500, "terms": 6 } },
+        { "text": "看免费资源", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "title": "养老预备基金（模拟）",
+      "text": "体验长期复利的魅力。3 回合锁定，复利高达 15%。",
+      "type": "save",
+      "options": [
+        { "text": "存入 2000", "save_data": { "amount": 2000, "rate": 0.15, "type": "compound", "lock": 3 } },
+        { "text": "不参与", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "title": "投资黄金实物",
+      "text": "国际局势动荡，黄金作为避险资产受到关注。",
+      "type": "invest",
+      "options": [
+        { 
+          "text": "买入 3000 黄金", 
+          "probability": 0.55, 
+          "impact": { "money": 800 }, 
+          "fail_impact": { "money": -500 } 
+        },
+        { "text": "不参与", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "title": "丢失手机/补办卡",
+      "text": "你不小心弄丢了手机和水卡，补办和购买备用机需要支出。",
+      "type": "accident",
+      "options": [
+        { "text": "支付费用", "impact": { "money": -1200 } }
+      ]
+    },
+    {
+      "title": "购买智能电动踏板车",
+      "text": "校园太大，步行太累，买个滑板车代步吧。价格 2400💰。",
+      "type": "spend",
+      "options": [
+        { "text": "全款支付 (2400)", "impact": { "money": -2400 } },
+        { "text": "分期付款 (首付400, 每期400, 6期)", "installment": { "down_payment": -400, "per_term": 400, "terms": 6 } },
+        { "text": "走路健身", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "title": "学生宿舍集资储蓄",
+      "text": "宿舍内部组织的互助储蓄，3 回合单利计息 7%。",
+      "type": "save",
+      "options": [
+        { "text": "存入 400", "save_data": { "amount": 400, "rate": 0.07, "type": "simple", "lock": 3 } },
+        { "text": "不参与", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "title": "投资网红奶茶店转让",
+      "text": "校友的一家奶茶店急需资金周转，成功后可获得高额分红。",
+      "type": "invest",
+      "options": [
+        { 
+          "text": "投资 4000", 
+          "probability": 0.5, 
+          "impact": { "money": 3000 }, 
+          "fail_impact": { "money": -2000 } 
+        },
+        { "text": "不参与", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "title": "图书馆逾期罚金",
+      "text": "你借的 10 本书全部逾期了，需要缴纳罚金才能继续借书。",
+      "type": "accident",
+      "options": [
+        { "text": "缴纳罚金", "impact": { "money": -30 } }
+      ]
+    },
+    {
+      "title": "购买高配置平板电脑",
+      "text": "新款平板支持无纸化学习，价格 5200💰。",
+      "type": "spend",
+      "options": [
+        { "text": "全款支付 (5200)", "impact": { "money": -5200 } },
+        { "text": "分期付款 (首付1200, 每期550, 8期)", "installment": { "down_payment": -1200, "per_term": 550, "terms": 8 } },
+        { "text": "继续用笔记本", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "title": "投资二手单反镜头",
+      "text": "低价收到一批二手镜头，利用你的专业知识转手卖给摄影社团。",
+      "type": "invest",
+      "options": [
+        { 
+          "text": "投入 2000 进货", 
+          "probability": 0.7, 
+          "impact": { "money": 1000 }, 
+          "fail_impact": { "money": -600 } 
+        },
+        { "text": "不参与", "impact": { "money": 0 } }
+      ]
+    },
+    {
+      "title": "银行新手理财存单",
+      "text": "专为开户学生准备的 3 回合复利产品 (利率 9%)。",
+      "type": "save",
+      "options": [
+        { "text": "存入 1000", "save_data": { "amount": 1000, "rate": 0.09, "type": "compound", "lock": 3 } },
+        { "text": "存入 4000", "save_data": { "amount": 4000, "rate": 0.09, "type": "compound", "lock": 3 } },
+        { "text": "不参与", "impact": { "money": 0 } }
       ]
     }
   ]

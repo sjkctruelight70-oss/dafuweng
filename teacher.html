@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>财富大冒险 - 教师监控中心 V21.0</title>
+    <title>财富大冒险 - 教师监控中心 V22.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -23,7 +23,6 @@
 
         let allGroups = {};
 
-        // 监听云端数据
         onSnapshot(gameRef, (snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type === "removed") delete allGroups[change.doc.id];
@@ -33,27 +32,27 @@
             renderLeaderboard();
         });
 
-        // 渲染小组卡片
         function renderDashboard() {
             const container = document.getElementById('group-container');
             container.innerHTML = '';
             const groupIds = Object.keys(allGroups).sort();
 
-            if(groupIds.length === 0) {
-                container.innerHTML = `<div class="col-span-full text-center py-20 text-gray-400">等待小组登录...</div>`;
-                return;
-            }
-
             groupIds.forEach(groupId => {
                 const data = allGroups[groupId];
                 const card = document.createElement('div');
-                card.className = "bg-white p-5 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-all";
+                card.className = "bg-white p-5 rounded-2xl shadow-sm border border-slate-200";
                 
                 let playerHtml = data.players.map((p, idx) => `
                     <div class="flex justify-between items-center text-sm mb-2 p-2 bg-slate-50 rounded-lg hover:bg-blue-50 cursor-pointer" 
                          onclick="window.showStudentDetail('${groupId}', ${idx})">
-                        <span class="font-bold text-slate-700">👤 ${p.name} <small class="text-blue-400 text-[10px]">Lv${p.level}</small></span>
-                        <span class="${p.money < 0 ? 'text-red-500' : 'text-green-600'} font-black">${Math.floor(p.money)}💰</span>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-slate-700">👤 ${p.name} <small class="text-blue-400 text-[10px]">Lv${p.level}</small></span>
+                            <span class="text-[10px] text-slate-400">现金: ${p.money}</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="${p.netWorth < 0 ? 'text-red-500' : 'text-emerald-600'} font-black text-base">${p.netWorth}</span>
+                            <p class="text-[9px] text-slate-400 uppercase font-bold">净资产</p>
+                        </div>
                     </div>
                 `).join('');
                 
@@ -68,7 +67,6 @@
             });
         }
 
-        // 渲染全班排行榜 (Top 10)
         function renderLeaderboard() {
             const list = document.getElementById('leaderboard-list');
             let allPlayers = [];
@@ -76,7 +74,8 @@
                 group.players.forEach(p => allPlayers.push({...p, group: group.groupId}));
             });
             
-            allPlayers.sort((a,b) => b.money - a.money);
+            // 重要：根据 netWorth (净资产) 排序，而不是现金
+            allPlayers.sort((a,b) => b.netWorth - a.netWorth);
             
             list.innerHTML = allPlayers.slice(0, 10).map((p, i) => `
                 <div class="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm mb-2 border-l-4" style="border-color:${p.color}">
@@ -87,18 +86,18 @@
                             <p class="text-[10px] text-slate-400 uppercase font-bold">${p.group}</p>
                         </div>
                     </div>
-                    <span class="text-blue-600 font-black">${Math.floor(p.money)}</span>
+                    <div class="text-right">
+                        <span class="text-blue-600 font-black text-lg">${p.netWorth}</span>
+                    </div>
                 </div>
             `).join('');
         }
 
-        // 弹出学生详细日志 (增加滚动修复)
         window.showStudentDetail = (groupId, playerIdx) => {
             const player = allGroups[groupId].players[playerIdx];
             const modal = document.getElementById('log-modal');
             const body = document.getElementById('modal-body');
-            
-            document.getElementById('modal-title').innerText = `${player.name} (${groupId}) 的账本`;
+            document.getElementById('modal-title').innerText = `${player.name} (${groupId}) 的财务报告`;
             
             let logHtml = `<div class="divide-y divide-gray-100">`;
             if(!player.history || player.history.length === 0) {
@@ -126,13 +125,13 @@
         };
 
         window.sendEndSignal = async () => {
-            if(confirm("确定发送【结算】信号？学生将玩完当前轮并多加一轮。")) {
+            if(confirm("确定发送【结算】信号？")) {
                 await setDoc(doc(db, "control", "gameStatus"), { command: "end", timestamp: Date.now() });
             }
         };
 
         window.resetAll = async () => {
-            if(confirm("警告：清空全班数据？此操作不可撤销。")) {
+            if(confirm("警告：清空全班数据？")) {
                 for (const id of Object.keys(allGroups)) await deleteDoc(doc(db, "gameData", id));
                 await setDoc(doc(db, "control", "gameStatus"), { command: "reset", timestamp: Date.now() });
                 location.reload();
@@ -146,60 +145,44 @@
 </head>
 <body class="bg-slate-50 p-6 font-sans">
 
-    <!-- 顶部状态栏 -->
     <header class="flex justify-between items-center mb-8 bg-slate-900 p-6 rounded-3xl shadow-xl">
         <div>
-            <h1 class="text-2xl font-black text-white italic">WEALTH ADVENTURE</h1>
-            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Teacher Monitoring Center</p>
+            <h1 class="text-2xl font-black text-white italic tracking-tight">WEALTH LAB · 教师端</h1>
+            <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">以【净资产】作为全班排名标准</p>
         </div>
         <div class="flex gap-3">
-            <button onclick="sendEndSignal()" class="bg-amber-400 hover:bg-amber-500 text-amber-950 px-6 py-2 rounded-xl font-black transition-all">🏁 一键结算</button>
+            <button onclick="sendEndSignal()" class="bg-amber-400 hover:bg-amber-500 text-amber-950 px-6 py-2 rounded-xl font-black transition-all">🏁 统一结算</button>
             <button onclick="resetAll()" class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-2 rounded-xl font-black transition-all">🔄 重置全班</button>
         </div>
     </header>
 
     <div class="grid grid-cols-12 gap-8">
-        <!-- 左侧：小组实时战况 -->
         <div class="col-span-12 lg:col-span-9">
             <h2 class="text-sm font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
-                <span class="w-8 h-[2px] bg-slate-300 mr-2"></span> 小组战况实时流
+                <span class="w-8 h-[2px] bg-slate-300 mr-2"></span> 实时小组战报
             </h2>
-            <div id="group-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                <!-- 动态卡片 -->
-            </div>
+            <div id="group-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
         </div>
 
-        <!-- 右侧：排行榜 -->
         <div class="col-span-12 lg:col-span-3">
             <h2 class="text-sm font-black text-slate-400 mb-4 uppercase tracking-widest flex items-center">
-                <span class="w-8 h-[2px] bg-slate-300 mr-2"></span> 全班首富 Top 10
+                <span class="w-8 h-[2px] bg-slate-300 mr-2"></span> 全班净资产 Top 10
             </h2>
-            <div id="leaderboard-list" class="bg-slate-100 p-4 rounded-3xl min-h-[600px]">
-                <!-- 动态排名 -->
-            </div>
+            <div id="leaderboard-list" class="bg-slate-100 p-4 rounded-3xl min-h-[600px]"></div>
         </div>
     </div>
 
-    <!-- 修复后的日志弹窗 -->
     <div id="log-modal" class="fixed inset-0 bg-slate-900/80 hidden items-center justify-center z-50 p-4 backdrop-blur-sm">
         <div class="bg-white w-full max-w-md rounded-[2.5rem] shadow-2xl flex flex-col overflow-hidden">
-            <!-- 头部固定 -->
             <div class="p-8 border-b border-slate-100 bg-slate-50">
-                <h2 id="modal-title" class="text-xl font-black text-slate-800 leading-none"></h2>
+                <h2 id="modal-title" class="text-xl font-black text-slate-800"></h2>
                 <p class="text-xs text-slate-400 mt-2 font-bold uppercase tracking-tighter">Financial Footprint Report</p>
             </div>
-            
-            <!-- 内容区：允许滚动 -->
-            <div id="modal-body" class="p-8 overflow-y-auto custom-scroll flex-1 max-h-[50vh]">
-                <!-- 内容加载处 -->
-            </div>
-            
-            <!-- 底部固定按钮 -->
+            <div id="modal-body" class="p-8 overflow-y-auto custom-scroll flex-1 max-h-[50vh]"></div>
             <div class="p-6 bg-slate-50 border-t border-slate-100">
-                <button onclick="closeLog()" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-black shadow-lg hover:bg-slate-800 transition-all">确认并关闭</button>
+                <button onclick="closeLog()" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-black shadow-lg">确认并关闭</button>
             </div>
         </div>
     </div>
-
 </body>
 </html>

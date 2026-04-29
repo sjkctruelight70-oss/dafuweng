@@ -422,7 +422,32 @@
         }
 
         async sync() {
-            try { await setDoc(doc(db, "gameData", this.groupId), { groupId: this.groupId, round: this.round, players: this.players.map(p=>({name:p.name, money:p.money, level:p.level, color:p.color, history:p.history})) }); } catch(e){}
+            if(!this.groupId) return;
+            try {
+                // 在同步前，为每位玩家计算实时的【净资产】
+                const syncPlayers = this.players.map(p => {
+                    const assetSum = p.assets.reduce((sum, a) => sum + a.value, 0);
+                    const savedSum = p.savings.reduce((sum, s) => sum + s.principal, 0);
+                    const loanSum = p.loans.reduce((sum, l) => sum + (l.amt * l.left), 0);
+                    const netWorth = Math.floor(p.money + assetSum + savedSum - loanSum);
+                    
+                    return {
+                        name: p.name,
+                        money: Math.floor(p.money), // 现金
+                        netWorth: netWorth,        // 总资产（结算以此为准）
+                        level: p.level,
+                        color: p.color,
+                        history: p.history
+                    };
+                });
+
+                await setDoc(doc(db, "gameData", this.groupId), { 
+                    groupId: this.groupId, 
+                    round: this.round, 
+                    players: syncPlayers,
+                    lastUpdate: Date.now()
+                });
+            } catch(e){ console.error("同步失败", e); }
         }
 
         updateUI() {
